@@ -1,0 +1,6 @@
+- name: install with dnf
+  become: true
+  dnf:
+    state: latest
+    name:
+      - tldr
