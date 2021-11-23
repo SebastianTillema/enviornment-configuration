@@ -6,6 +6,7 @@
     name: 
      - zsh 
      - git
+     - util-linux-user
   register: installation
 
 - name: Check if .zshrc exists
@@ -29,3 +30,8 @@
     src=~/.oh-my-zsh/templates/zshrc.zsh-template
     dest=~/.zshrc
   when: not stat_rc_result.stat.exists
+  
+- name: Setting zsh as default shell
+  user:
+    name: "{{ lookup('env', 'USER') }}"
+    shell: chsh -s /bin/zsh
